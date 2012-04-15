@@ -1,0 +1,7 @@
+git init
+git add . -A
+git commit -m "Intial Commit"
+git remote add origin git@github.com:anishgeorge/GitMan.git
+git push -u origin master
+#No add and edit files
+git push

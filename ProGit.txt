@@ -1,0 +1,153 @@
+PRO Git
+
+1)Create an empty repository
+$ git init
+This creates .git subdirectory that contains all of your necessary repository files. At this point nothing in your project is tracked yet. git status will show all files as untracked.
+
+2)
+To start version-controlling existing files, add and commit
+$git add *.xml
+$git add pom.xml
+$git add *
+(If you commit at this point, the version of the file at the time you ran git add is what will be in the historical snapshot)
+If you changed the file after issuing add command, that will not moved to stage.
+$ git commit -m "initial project version"
+
+#Add all files to stage
+$ git add . -A
+
+Note:git add will stage the file
+
+eg:change file1, add file1,make some update on file1. In this case if you check status, file1 one will shown in two sections - In Modified and in to commit
+
+Cloning an Existing Repository
+$ git clone git://github.com/schacon/grit.git
+Will checkout the files to grit folder.git status will says all files 
+
+$ git clone git://github.com/schacon/grit.git mygrit
+Will checkout the files to mygrit folder
+
+All files are 
+1) Tracked (Already committed ones - unmodified, modified, or staged)
+2) All other files
+
+Ignoring Files
+Create a file with name .gitignore in git root 
+
+.gitignore
+bin/
+target/
+.classpath
+.project
+.settings/
+.log
+.temp
+calculator.zip
+
+What changed in files that are not yet staged
+git diff
+
+What changed in files that are staged compared to last commmit
+git diff --staged
+
+git commit -m "commets"
+This will commit and tell you to which branch you committed.
+eg: [master] where master is the branch name
+
+Skipping the Staging Area
+If a file is already in tracked mode(committed one), we can skip staging as below
+git commit -a -m "Comments"
+
+To delete a file
+git rm a.txt 			(Delete the local file and do staging)
+git commit - m "files deleted"		(Delete from respository
+git rm log/\*.log (remove all files from the log folder with extention *.log)
+$ git rm \*~ (removes all files end with ~)
+
+Note:
+If some file is in stage or respository, even if you delete it, it will not removed from respository. To remove, use rm and commit
+
+If you want to remove a file say readme which is already staged, use the below command
+git rm readme -f
+
+To remove file from respository eg: class files added by mistake( forget to add in .gitignore), we can remove from respositoty but can still keep in local
+git rm --cached readme.txt ( This will mark the file as untracked file)
+
+Rename as file(Move)
+git mv file_from file_to(This will change the stage. Issue commit to respository)
+
+
+Git revision history
+git log
+
+Pagination
+Press q go view the next page. To skip pagination and use the scroll bar use --no-pager
+eg: git --no-pager log
+
+git log -p (History with difference)
+git log -p -2 (Filter only last two entries)
+git log --stat (Abbreviated stats for each commit)
+git log --pretty=oneline (Format output)
+git log --pretty=format:"%h - %an, %ar : %s"
+git log --pretty=format:"%h %s" --graph (ASCII graph showing your branch and merge history)
+git log --since=2.weeks
+git log --since=2.weeks
+git log --since=2012-01-15
+git log --since=2 years 1 day 3 minutes ago
+
+Version History
+git log --pretty=oneline src/main/webapp/index.jsp
+
+Version Diff
+git log -p src/main/webapp/index.jsp
+
+
+Format Options 
+
+Option	Description of Output
+%H	Commit hash
+%h	Abbreviated commit hash
+%T	Tree hash
+%t	Abbreviated tree hash
+%P	Parent hashes
+%p	Abbreviated parent hashes
+%an	Author name
+%ae	Author e-mail
+%ad	Author date (format respects the –date= option)
+%ar	Author date, relative
+%cn	Committer name
+%ce	Committer email
+%cd	Committer date
+%cr	Committer date, relative
+%s	Subject
+
+Note:
+The author is the person who originally wrote the patch, whereas the committer is the person who last applied the patch
+
+
+Options of log
+
+Option	Description
+-p	Show the patch introduced with each commit.
+--stat	Show statistics for files modified in each commit.
+--shortstat	Display only the changed/insertions/deletions line from the --stat command.
+--name-only	Show the list of files modified after the commit information.
+--name-status	Show the list of files affected with added/modified/deleted information as well.
+--abbrev-commit	Show only the first few characters of the SHA-1 checksum instead of all 40.
+--relative-date	Display the date in a relative format (for example, “2 weeks ago”) instead of using the full date format.
+--graph	Display an ASCII graph of the branch and merge history beside the log output.
+--pretty	Show commits in an alternate format. Options include oneline, short, full, fuller, and format (where you specify your own format).
+
+Option	Description
+-(n)	Show only the last n commits
+--since, --after	Limit the commits to those made after the specified date.
+--until, --before	Limit the commits to those made before the specified date.
+--author	Only show commits in which the author entry matches the specified string.
+--committer	Only show commits in which the committer entry matches the specified string.
+
+eg:
+git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \
+   --before="2008-11-01" --no-merges -- t/
+   
+
+

@@ -1,0 +1,22 @@
+Pro Git undo
+
+If you wanto cancel the last commit and add a new commet for commit or add one more file with a single commit, use ammend
+git commit --amend
+
+To change the last commit comment
+git commit --amend -m "commit test1 updated"
+
+To add a new file along the last commit
+$ git commit -m 'initial commit'
+$ git add forgotten_file
+$ git commit --amend (Use -m to update the comment)
+
+To remove a file benchmarks.rb from stage(Sill the changed made locally will be available in the file)
+git reset HEAD benchmarks.rb
+
+To replace with the latest from respository(Be very carfull. You cannot get back your previous file since it is not checked-in)
+git checkout -- benchmarks.rb
+
+To revert to a particular version (dc73768709 is the hash)
+git log --pretty=oneline src/main/webapp/index.jsp (List the Hash value of each version with check-in comments)
+git checkout dc73768709 -- src/main/webapp/index.jsp

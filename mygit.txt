@@ -1,0 +1,38 @@
+$ cd ../spring-mvc-poc2
+#Create git respository
+$ git init
+
+#Status
+$ git status
+
+#Add all files to stage
+$ git add . -A
+
+git reset FILE
+
+#Remove all files to stage
+$git rm -r --cached .
+
+$ git status
+$ git commit -m "With Maven Structure"
+
+GUI
+$ gitk
+
+
+Fixing un-committed mistakes
+$ git reset --hard HEAD
+
+If you just want to restore just one file, say your hello.rb, use git checkout instead
+$ git checkout -- hello.rb
+$ git checkout HEAD hello.rb
+
+$ git archive -o calculator.zip --format zip HEAD
+
+
+
+$ curl -F 'login=<your_login_name>' -F 'token=<your_API_token>' https://github.com/api/v2/json/repos/create -F 'name=<your_repo_name>' -F 'description=<your_repo_summary>'
+
+$ curl -F 'login=anish.george.mail@gmail.com' -F 'token=5d1aa9dfd67aff98ebad0de85af97d73' https://github.com/api/v2/json/repos/create -F 'name=spring-mvc-1' -F 'description=Spring_MVC_Part1'
+
+
